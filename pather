@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+def pather(input)
+  File.readlines(input).each do |row|
+    puts row
+  end
+end
