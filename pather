@@ -1,7 +1,14 @@
 #!/usr/bin/env ruby
 
-def pather(input)
-  File.readlines(input).each do |row|
-    puts row
+input_file = ARGV[0]
+output_file = ARGV[1]
+
+def pather(input, output)
+  File.open(output, 'w') do |f|
+    File.readlines(input).each do |row|
+      f << row
+    end
   end
 end
+
+pather(input_file, output_file)
