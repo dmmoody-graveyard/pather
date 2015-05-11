@@ -4,8 +4,29 @@ input_file = ARGV[0]
 output_file = ARGV[1]
 
 def pather(input, output)
+  start_index = nil
+  start = false
   File.open(output, 'w') do |f|
     File.readlines(input).each do |row|
+      if row.index('#')
+        if start == false
+          start = true
+          start_index = row.index('#')
+        else
+          start = false
+          if start_index < row.index('#')
+            for x in start_index..row.index('#')-1 do
+              row[x] = '*'
+            end
+          else
+            for x in row.index('#')+1..start_index do
+              row[x] = '*'
+            end
+          end
+        end
+      else
+        row[start_index] = '*' if start == true  
+      end
       f << row
     end
   end
